@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerLoyaltyService {
-    private static final Logger log= LoggerFactory.getLogger(CustomerLoyaltyService.class);
+    private static final Logger log = LoggerFactory.getLogger(CustomerLoyaltyService.class);
 
     public List<CustomerLoyaltyResponse> getTopLoyaltyCustomers(CustomerLoyaltyRequest customerLoyaltyRequest) {
-        log.info("CustomerLoyaltyService::getTopLoyaltyCustomers::{}",customerLoyaltyRequest);
+        log.info("CustomerLoyaltyService::getTopLoyaltyCustomers::{}", customerLoyaltyRequest);
         if (customerLoyaltyRequest == null || customerLoyaltyRequest.getCustomers().isEmpty()) {
             throw new InvalidRequestException("Invalid Request");
         }
@@ -43,9 +43,6 @@ public class CustomerLoyaltyService {
         if (pointsEarned <= 500) {
             return LoyaltyConstants.SILVER;
         }
-        if (pointsEarned > 500) {
-            return LoyaltyConstants.GOLD;
-        }
-        return "";
+        return LoyaltyConstants.GOLD;
     }
 }

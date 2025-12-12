@@ -41,7 +41,8 @@ public class CustomerLoyaltyControllerTest {
                 new CustomerLoyaltyResponse(2, "Anita", 300),
                 new CustomerLoyaltyResponse(1, "Manoj", 50));
         when(customerLoyaltyService.getTopLoyaltyCustomers(customerLoyaltyRequest)).thenReturn(customerLoyaltyResponses);
-        ResponseEntity<List<CustomerLoyaltyResponse>> customerLoyaltyResponses1 = customerLoyaltyController.getTopLoyaltyCustomers(customerLoyaltyRequest);
-        Assertions.assertNotNull(customerLoyaltyResponses1);
+        ResponseEntity<List<CustomerLoyaltyResponse>> customerLoyaltyResponsesObj = customerLoyaltyController.getTopLoyaltyCustomers(customerLoyaltyRequest);
+        Assertions.assertNotNull(customerLoyaltyResponsesObj);
+        Assertions.assertEquals(customerLoyaltyResponses, customerLoyaltyResponsesObj.getBody());
     }
 }
